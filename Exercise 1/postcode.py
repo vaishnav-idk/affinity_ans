@@ -13,14 +13,21 @@ print(pincode)
 
 
 
-api_url="https://api.postalpincode.in/pincode/110001"
+api_url="https://api.postalpincode.in/pincode/560050"
 api_response=req.get(api_url)
+data=api_response.json()
 if api_response.status_code !=200:
 		print("error")
 else:
-		data=api_response.json()
+
 		with open("api_data.json","w") as file:
 			json.dump(data,file,indent=4)
 			file.close()
 
+postoffices=data[0]["PostOffice"]
 
+for postoffice in postoffices:
+	if(postoffice["State"].lower() in address.lower() or
+		postoffice["District"].lower() in address.lower() or
+		postoffice["Name"].lower() in address.lower()):
+			print("valid address for pincode")
