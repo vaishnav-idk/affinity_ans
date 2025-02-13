@@ -73,3 +73,12 @@ check_valid_address("2nd Phase, 374/B, 80 Feet Rd, Mysore Bank Colony,Banashanka
 check_valid_address("Colony, Bengaluru, Karnataka 560050")#invalid address
 
 
+""" for performing unit tests on this programs
+1. we can test by giving the correct address 
+2.address with wrong postoffice names
+3.address with alternate names
+4.incomplete address
+5.address without pincode
+6.address with special characters
+
+"""
