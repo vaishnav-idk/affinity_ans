@@ -7,10 +7,11 @@ import re
 
 # import re for regex and json for handling api response
 def pincode_return(address):
-	pattern = r'\b\(d{6}\b'
+	pattern = r'\b\d{6}\b'
 	match = re.search(pattern, address)
-	pincode = match.group(0)
-	if pincode :
+
+	if match :
+		pincode = match.group(0)
 		return pincode
 	else:
 		return None
@@ -23,19 +24,19 @@ def get_actual_place(address):
 		"mysore bank colony": "state bank of mysore colony"
 	}
 	#dictonary for storing alternative names
-	places=re.split(r",\s*|\.\s*", address) # regex for split words based on comma , whitespace or fullstop
+	places=re.split(r",\s*|\.", address) # regex for split words based on comma , whitespace or fullstop
 	for i in places:
 		"""loop checks if a word in address exsits in alternatie name dict if yes , standard name to returned lowercase address
 	            else adds the word as is """
 		i=i.lower()
 		if i in dict:
-			std_address=std_address+dict[i]
+			std_address=std_address+" "+dict[i]
 		else:
-			std_address=std_address+i
+			std_address=std_address+" "+i
 	return std_address
 
 
-def checK_valid_address(address):
+def check_valid_address(address):
 	pincode = pincode_return(address)
 	if pincode is None:
 		#chekcing if pincode function returned any pincode
@@ -50,18 +51,25 @@ def checK_valid_address(address):
 			file.close()
 	else:
 		return print("api timedout")
-	#changing the alternative district and place name to standered names
+	#changing the alternative district and place name to standered names and in lowercase
 	low_address=get_actual_place(address)
 
 	#storing all the postoffices returned from api response on a particular pin
-	postoffices=data[0]["PostOffices"]
+	flag=0
+	postoffices = data["PostOffice"]
 	for postoffice in postoffices:
-		if postoffice["District"].lower() in low_address and postoffice["Name"] in low_address:
-			print("Valid Pincode for the address")
-		else:
-			print("incorrect pincode")
 
 
+		if postoffice["District"].lower() in low_address and postoffice["Name"].lower() in low_address:
+			flag=1
+	if flag==1:
+		print(f'Valid location for pincode {pincode}')
+	else:
+		print(f'InValid location for pincode {pincode}')
 
+
+check_valid_address("2nd Phase, 374/B, 80 Feet Rd, Mysore Bank Colony, Banashankari 3rd Stage, Srinivasa Nagar, Bengaluru, Karnataka 560050 ")#valid address
+check_valid_address("2nd Phase, 374/B, 80 Feet Rd, Mysore Bank Colony,Banashankari 3rd Stage, Srinivasa Nagar, Bengaluru, Karnataka 560095")#invalide address
+check_valid_address("Colony, Bengaluru, Karnataka 560050")#invalid address
 
 
