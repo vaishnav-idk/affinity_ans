@@ -16,3 +16,12 @@ awk -F ';' '{
 /^[^;]*$/{
 print
 }
+
+#now to print normal lines we take the idea that they start with numbers
+/^[0-9]/{
+printf "%s %s\n", $4, $5
+}
+
+#trying to print headline using column numbers
+{
+}
