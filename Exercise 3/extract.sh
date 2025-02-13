@@ -24,5 +24,5 @@ printf "%s %s\n", $4, $5
 
 #trying to print header using begin command
 BEGIN{
-printf "%s %60s\n", "Scheme Name", "Net Asset Value"
+printf "%s %40s\n", "Scheme Name", "Net Asset Value"
 }
