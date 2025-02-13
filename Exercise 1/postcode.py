@@ -22,8 +22,11 @@ def get_actual_place(address):
 		"bengaluru": "bangalore",
 		"mysore bank colony": "state bank of mysore colony"
 	}
-	places=re.split(r",\s*|\.\s*", address)
+	#dictonary for storing alternative names
+	places=re.split(r",\s*|\.\s*", address) # regex for split words based on comma , whitespace or fullstop
 	for i in places:
+		"""loop checks if a word in address exsits in alternatie name dict if yes , standard name to returned lowercase address
+	            else adds the word as is """
 		i=i.lower()
 		if i in dict:
 			std_address=std_address+dict[i]
@@ -53,7 +56,10 @@ def checK_valid_address(address):
 	#storing all the postoffices returned from api response on a particular pin
 	postoffices=data[0]["PostOffices"]
 	for postoffice in postoffices:
-		if(postoffice["District"].lower() in address.lower()) and postoffice["Name"]:
+		if postoffice["District"].lower() in low_address and postoffice["Name"] in low_address:
+			print("Valid Pincode for the address")
+		else:
+			print("incorrect pincode")
 
 
 
