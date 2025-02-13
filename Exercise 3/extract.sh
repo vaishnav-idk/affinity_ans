@@ -9,3 +9,10 @@ awk -F ';' '{print $4 \t\t $5}' nava.txt > nav.tsv
 
 #in awk command -F command to make ; as separator and printing $4 and $5th colum the scheme name and assest column
 
+#attempting to maintian subheading  and some formatting
+
+awk -F ';' '{
+#using regex to take print subheading (they dont have ; )
+/^[^;]*$/{
+print
+}
