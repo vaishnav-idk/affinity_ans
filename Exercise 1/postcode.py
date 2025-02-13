@@ -2,6 +2,15 @@
 import json
 
 import requests as req
+import re
+
+#using regex patter for finding pincode
+pattern=r'\b(\d{6})\b'
+address="2nd Phase, 374/B, 80 Feet Rd, Mysore Bank Colony,Banashankari 3rd Stage, Srinivasa Nagar, Bengaluru, Karnataka 560050"
+match=re.search(pattern,address)
+pincode=match.group(1)
+print(pincode)
+
 
 
 api_url="https://api.postalpincode.in/pincode/110001"
