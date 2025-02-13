@@ -1,0 +1,12 @@
+# Ignore the virtual environment directory
+postenv/
+
+# Optional: Ignore Python cache and other common files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment-related files
+.env
+.venv/
