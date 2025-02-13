@@ -24,4 +24,5 @@ printf "%s %s\n", $4, $5
 
 #trying to print headline using column numbers
 {
+printf "%s %60s\n", $4, $5
 }
