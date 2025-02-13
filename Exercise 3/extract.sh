@@ -3,3 +3,6 @@
 
 curl https://www.amfiindia.com/spages/NAVAll.txt > nava.txt
 
+#using awk to extract data from txt file as columns
+
+awk -F ';' '{print $4 $5}' nav.txt
