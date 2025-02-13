@@ -31,3 +31,21 @@ for postoffice in postoffices:
 		postoffice["District"].lower() in address.lower() or
 		postoffice["Name"].lower() in address.lower()):
 			print("valid address for pincode")
+
+#considering the various names that each district and place using a dictonairy
+def get_actual_place(address):
+	std_address=""
+	dict={
+		"bengaluru" : "bangalore",
+		"mysore bank colony" : "state bank of mysore colony"
+	}
+	place = re.split(r",\s*|\.\s*", address)
+	for i in place:
+		i=i.lower()
+		if i in dict:
+			std_address=std_address+" "+dict[i]
+		else:
+			std_address=std_address+" "+i
+
+	print(std_address)
+get_actual_place(address)
