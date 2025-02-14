@@ -40,6 +40,13 @@ Question 3
 
  Answer: * rafam_acc and clan_acc connected via clan membership table
 		* rfam_acc and rfamseq_acc connected via full full region table
-		* ncbi_id in both rframdseq and taxonomy tables
-
+		* ncbi_id in both rframdseq and taxonomy tables*/
+select taxonomy.ncbi_id,taxonomy.species,rfamseq.length from taxonomy join rfamseq on taxonomy.ncbi_id=rfamseq.ncbi_id where taxonomy.species like 'Oryza%' order by rfamseq.length desc limit 1;
+/*
++---------+-----------------+----------+
+| ncbi_id | species         | length   |
++---------+-----------------+----------+
+|  110450 | Oryza granulata | 80745213 |
++---------+-----------------+----------+
+1 row in set (1.03 sec)
  */
