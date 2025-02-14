@@ -1,5 +1,5 @@
 # affinity_ans
- answers for the take away questions for affinity <br>
+ answers for the take away questions for affinity answers<br>
 ✅exercise 1 <br>
 ✅exercise 2 <br>
 ✅excercise 3 <br>
